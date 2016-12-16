@@ -1,0 +1,125 @@
+{% extends '/Layout/Templates/base.html.twig' %}
+
+{% block actionbar %}
+
+{% endblock %}
+
+{% block content %}
+  {% form settings %}
+  <div class="row fork-module-content">
+     <div class="col-md-12">
+       <div class="panel panel-default">
+         <div class="panel-heading">
+           <h3 class="panel-title">
+             {{ 'lbl.Pagination'|trans|ucfirst }}
+           </h3>
+         </div>
+         <div class="panel-body">
+           <div class="form-group">
+             <label for="overviewNumberOfItems" class="control-label">{{ 'lbl.ItemsPerPage'|trans|ucfirst }}</label>
+             {% form_field overview_number_of_items %} {% form_field_error overview_number_of_items %}
+           </div>
+
+         </div>
+       </div>
+     </div>
+   </div>
+
+   <div class="row fork-module-content">
+	  <div class="col-md-12">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+			<h3 class="panel-title">
+			  {{ 'lbl.Categories'|trans|ucfirst }}
+			</h3>
+		  </div>
+		  <div class="panel-body">
+          <div class="form-group last">
+            <ul class="list-unstyled">
+              <li class="checkbox">
+                <label for="allowSubcategories" class="control-label">{% form_field allow_subcategories %} {{ 'msg.AllowSubcategories'|trans|ucfirst }}</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+		</div>
+	  </div>
+	</div>
+
+    <div class="row fork-module-content">
+ 	  <div class="col-md-12">
+ 		<div class="panel panel-default">
+ 		  <div class="panel-heading">
+ 			<h3 class="panel-title">
+ 			  {{ 'lbl.Tags'|trans|ucfirst }}
+ 			</h3>
+ 		  </div>
+ 		  <div class="panel-body">
+           <div class="form-group last">
+             <ul class="list-unstyled">
+               <li class="checkbox">
+                 <label for="allowTags" class="control-label">{% form_field allow_tags %} {{ 'msg.AllowTags'|trans|ucfirst }}</label>
+               </li>
+             </ul>
+           </div>
+         </div>
+ 		</div>
+ 	  </div>
+ 	</div>
+
+	<div class="row fork-module-content">
+ 	  <div class="col-md-12">
+ 		<div class="panel panel-default">
+ 		  <div class="panel-heading">
+ 			<h3 class="panel-title">
+ 			  {{ 'lbl.Social'|trans|ucfirst }}
+ 			</h3>
+ 		  </div>
+ 		  <div class="panel-body">
+           <div class="form-group last">
+             <ul class="list-unstyled">
+               <li class="checkbox">
+                 <label for="useImageAsOgImage" class="control-label">{% form_field use_image_as_og_image %} {{ 'msg.UseImageAsOgImage'|trans|ucfirst }}</label>
+               </li>
+             </ul>
+           </div>
+         </div>
+ 		</div>
+ 	  </div>
+ 	</div>
+
+	<div class="row fork-module-content">
+ 	  <div class="col-md-12">
+ 		<div class="panel panel-default">
+ 		  <div class="panel-heading">
+ 			<h3 class="panel-title">
+ 			  {{ 'lbl.Widgets'|trans|ucfirst }}
+ 			</h3>
+ 		  </div>
+ 		  <div class="panel-body">
+           <div class="form-group last">
+             <ul class="list-unstyled">
+             
+			   <li class="checkbox">
+				 <label for="makeWidgetPerCategory" class="control-label">{% form_field make_widget_per_category %} {{ 'msg.MakeWidgetPerCategory'|trans|ucfirst }}</label>
+			   </li>
+             </ul>
+           </div>
+         </div>
+ 		</div>
+ 	  </div>
+ 	</div>
+
+  <div class="row fork-module-actions">
+    <div class="col-md-12">
+      <div class="btn-toolbar">
+        <div class="btn-group pull-right" role="group">
+          <button id="save" type="submit" name="save" class="btn btn-primary">
+            <span class="fa fa-floppy-o"></span>{{ 'lbl.Save'|trans|ucfirst }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endform %}
+{% endblock %}

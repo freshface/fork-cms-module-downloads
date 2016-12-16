@@ -1,0 +1,75 @@
+<h1>{{ item.name }}</h1>
+
+{% if success %}
+	<div class="alert success">
+		<p>
+			{{ 'msg.DownloadsInsertSuccess'|trans|ucfirst }}
+		</p>
+	</div>
+{% endif %}
+
+{{ item.description|raw }}
+
+
+
+{% if form_details %}
+	<div class="form">
+
+	{% form details %}
+
+		 <div class="form-item">
+			 <label for="email">
+			 	{{ 'lbl.Email'|trans|ucfirst }} <abbr title="{{ 'lbl.RequiredField'|trans }}">*</abbr>
+				<span class="error"> {% form_field_error email %}</span>
+			</label>
+ 			{% form_field email %}
+		 </div>
+
+		 <div class="form-item">
+			<label for="firstName">
+			   {{ 'lbl.FirstName'|trans|ucfirst }} <abbr title="{{ 'lbl.RequiredField'|trans }}">*</abbr>
+			   <span class="error"> {% form_field_error first_name %}</span>
+		   </label>
+		   {% form_field first_name %}
+		</div>
+
+		<div class="form-item">
+		   <label for="lastName">
+			  {{ 'lbl.LastName'|trans|ucfirst }} <abbr title="{{ 'lbl.RequiredField'|trans }}">*</abbr>
+			  <span class="error"> {% form_field_error last_name %}</span>
+		  </label>
+		  {% form_field last_name %}
+	   </div>
+
+
+	 <div class="form-item">
+        <input class="button" type="submit" value="{{ 'lbl.Submit'|trans|ucfirst }}" />
+    </div>
+
+
+
+	{% endform %}
+	 </div>
+{% else %}
+
+<p>
+	<a class="button" href="{{ geturlforblock('Downloads','Download') }}/{{ item.url }}" title="{{ item.name }}">{{ 'lbl.Download'|trans|ucfirst }}</a>
+</p>
+
+{% endif %}
+
+
+{# navigation #}
+{% if navigation %}
+	<nav class="pagination pager">
+	    <ul>
+	        <li class="prev">
+	        	{% if navigation.previous %}<a href="{{ navigation.previous.url }}" rel="prev">{{ 'lbl.Previous'|trans|ucfirst }}: {{ navigation.previous.name }}</a>{% endif %}
+	        </li>
+
+	        <li class="next">
+	        	{% if navigation.next %}<a href="{{ navigation.next.url }}" rel="next">{{ 'lbl.Next'|trans|ucfirst }}: {{ navigation.next.name }}</a>{% endif %}
+	        </li>
+	    </ul>
+	</nav>
+{% endif %}

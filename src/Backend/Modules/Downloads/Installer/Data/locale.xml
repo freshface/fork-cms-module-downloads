@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locale>
+  <Backend>
+    <Downloads>
+      <item type="label" name="AddImages">
+        <translation language="en"><![CDATA[add images]]></translation>
+        <translation language="nl"><![CDATA[voeg afbeeldingen toe]]></translation>
+      </item>
+      <item type="message" name="ConfirmDeleteItem">
+        <translation language="en"><![CDATA[Are your sure you want to delete this?]]></translation>
+        <translation language="nl"><![CDATA[Ben je zeker dat je het item wil verwijderen? ]]></translation>
+      </item>
+
+      <item type="label" name="AddDownload">
+        <translation language="en"><![CDATA[add download]]></translation>
+        <translation language="nl"><![CDATA[voeg download toe]]></translation>
+      </item>
+
+      <item type="label" name="Download">
+        <translation language="en"><![CDATA[download]]></translation>
+        <translation language="nl"><![CDATA[download]]></translation>
+      </item>
+
+      <item type="label" name="RequireDetails">
+        <translation language="en"><![CDATA[require details]]></translation>
+        <translation language="nl"><![CDATA[verplicht gegevens]]></translation>
+      </item>
+
+      <item type="message" name="RequireDetails">
+        <translation language="en"><![CDATA[Fill out a form before downloading.]]></translation>
+        <translation language="nl"><![CDATA[Vul een formulier in aflvorens te downloaden.]]></translation>
+      </item>
+
+      <item type="label" name="ParentCategory">
+        <translation language="en"><![CDATA[parent category]]></translation>
+        <translation language="nl"><![CDATA[ouder categorie]]></translation>
+      </item>
+      <item type="label" name="DownloadDetail">
+        <translation language="en"><![CDATA[download detail]]></translation>
+        <translation language="nl"><![CDATA[download detail]]></translation>
+      </item>
+      <item type="label" name="NumDownloads">
+        <translation language="en"><![CDATA[number of downloads]]></translation>
+        <translation language="nl"><![CDATA[keer gedownload]]></translation>
+      </item>
+
+
+      <item type="label" name="Downloads">
+        <translation language="en"><![CDATA[downloads]]></translation>
+        <translation language="nl"><![CDATA[downloads]]></translation>
+      </item>
+      <item type="label" name="PublishedDownloads">
+        <translation language="en"><![CDATA[published downloads]]></translation>
+        <translation language="nl"><![CDATA[gepubliceerde downloads]]></translation>
+      </item>
+      <item type="label" name="SelectImages">
+        <translation language="en"><![CDATA[select images]]></translation>
+        <translation language="nl"><![CDATA[selecteer afbeeldingen]]></translation>
+      </item>
+      <item type="label" name="ShowSubcategories">
+        <translation language="en"><![CDATA[show subcategories]]></translation>
+        <translation language="nl"><![CDATA[ton subcategorieen]]></translation>
+      </item>
+      <item type="label" name="Upload">
+        <translation language="en"><![CDATA[upload]]></translation>
+        <translation language="nl"><![CDATA[upload]]></translation>
+      </item>
+      <item type="label" name="Select">
+        <translation language="en"><![CDATA[select]]></translation>
+        <translation language="nl"><![CDATA[selecteer]]></translation>
+      </item>
+      <item type="label" name="Social">
+        <translation language="en"><![CDATA[social]]></translation>
+        <translation language="nl"><![CDATA[sociaal]]></translation>
+      </item>
+
+      <item type="message" name="YouCanAddImagesAfterSaving">
+        <translation language="en"><![CDATA[After saving you can add images.]]></translation>
+        <translation language="nl"><![CDATA[Na het opslagen kan je afbeeldingen toevoegen.]]></translation>
+      </item>
+      <item type="message" name="AllowSubcategories">
+        <translation language="en"><![CDATA[Allow subcategories.]]></translation>
+        <translation language="nl"><![CDATA[Sta subcategorieen toe.]]></translation>
+      </item>
+      <item type="message" name="AllowTags">
+        <translation language="en"><![CDATA[Allow tags.]]></translation>
+        <translation language="nl"><![CDATA[Sta tags toe.]]></translation>
+      </item>
+      <item type="message" name="UseImageAsOgImage">
+        <translation language="en"><![CDATA[Use the cover image as og:image]]></translation>
+        <translation language="nl"><![CDATA[Gebruik de cover afbeelding als og:image]]></translation>
+      </item>
+      <item type="message" name="MakeWidgetPerDownload">
+        <translation language="en"><![CDATA[Create widget per download.]]></translation>
+        <translation language="nl"><![CDATA[Maak een widget aan per download.]]></translation>
+      </item>
+      <item type="message" name="MakeWidgetPerCategory">
+        <translation language="en"><![CDATA[Create widget per category.]]></translation>
+        <translation language="nl"><![CDATA[Maak een widget aan per categorie.]]></translation>
+      </item>
+      <item type="label" name="Entries">
+        <translation language="en"><![CDATA[entries]]></translation>
+        <translation language="nl"><![CDATA[inschrijven]]></translation>
+      </item>
+
+      <item type="message" name="AllowFormEntries">
+        <translation language="en"><![CDATA[Allow form entries on the download.]]></translation>
+        <translation language="nl"><![CDATA[Sta inschrijvingen via het formulier toe.]]></translation>
+      </item>
+      <item type="message" name="AllowFormEntriesEmail">
+        <translation language="en"><![CDATA[Send an e-mail to:]]></translation>
+        <translation language="nl"><![CDATA[Stuur een e-mail naar:]]></translation>
+      </item>
+      <item type="message" name="DownloadWidget">
+        <translation language="en"><![CDATA[Make a download widget]]></translation>
+        <translation language="nl"><![CDATA[Maak een download widget]]></translation>
+      </item>
+    </Downloads>
+    <Core>
+      <item type="label" name="Downloads">
+        <translation language="nl"><![CDATA[downloads]]></translation>
+        <translation language="en"><![CDATA[downloads]]></translation>
+      </item>
+      <item type="label" name="DownloadDetail">
+        <translation language="nl"><![CDATA[download detail]]></translation>
+        <translation language="en"><![CDATA[download detail]]></translation>
+      </item>
+
+      <item type="label" name="RecentDownloads">
+        <translation language="nl"><![CDATA[recente downloads]]></translation>
+        <translation language="en"><![CDATA[recent downloads]]></translation>
+      </item>
+
+      <item type="label" name="DownloadsByCategory">
+        <translation language="nl"><![CDATA[per categorie]]></translation>
+        <translation language="en"><![CDATA[by category]]></translation>
+      </item>
+
+      <item type="label" name="Download">
+        <translation language="nl"><![CDATA[download]]></translation>
+        <translation language="en"><![CDATA[download]]></translation>
+      </item>
+
+
+    </Core>
+  </Backend>
+  <Frontend>
+      <Core>
+        <item type="label" name="Downloads">
+          <translation language="nl"><![CDATA[downloads]]></translation>
+          <translation language="en"><![CDATA[downloads]]></translation>
+        </item>
+
+        <item type="label" name="Download">
+          <translation language="nl"><![CDATA[download]]></translation>
+          <translation language="en"><![CDATA[download]]></translation>
+        </item>
+
+        <item type="label" name="ReadMore">
+          <translation language="nl"><![CDATA[lees meer]]></translation>
+          <translation language="en"><![CDATA[read more]]></translation>
+        </item>
+
+
+        <item type="action" name="Download">
+          <translation language="nl"><![CDATA[download]]></translation>
+          <translation language="en"><![CDATA[download]]></translation>
+        </item>
+
+        <item type="label" name="Submit">
+          <translation language="nl"><![CDATA[verstuur]]></translation>
+          <translation language="en"><![CDATA[submit]]></translation>
+        </item>
+
+
+        <item type="message" name="DownloadsInsertSuccess">
+          <translation language="nl"><![CDATA[Binnen enkele seconden zal je download starten.]]></translation>
+          <translation language="en"><![CDATA[Your download will start in a few seconds.]]></translation>
+        </item>
+
+      </Core>
+  </Frontend>
+</locale>

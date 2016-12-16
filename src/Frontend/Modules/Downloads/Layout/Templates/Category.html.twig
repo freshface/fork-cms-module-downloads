@@ -1,0 +1,85 @@
+<div class="downloads-category">
+	<div class="downloads-category-intro">
+		{$item.intro}
+	</div>
+
+	<div class="overview-filter">
+		{form:downloadsIndexForm}
+
+			<label for="resetFilter" class="reset {option:!searched}checked{/option:!searched}">
+				{$chkResetFilter}
+				<span>{$lblAll|ucfirst}</span>
+			</label>
+			
+			{iteration:categories}
+				<label for="{$categories.id}">
+					{$categories.chkCategories}
+					<span>{$categories.label}</span>
+				</label>
+			{/iteration:categories}
+
+		{/form:downloadsIndexForm}
+	</div>
+
+	{option:items}
+		<div class="downloads-grid">
+			{iteration:items}
+			<div class="downloads-grid-item-outer downloads-grid-size-{$items.size}">
+				<div class="downloads-grid-item " style="background-image:url({$FRONTEND_FILES_URL}/Downloads/image/800x/{$items.image})">
+					<a href="{$items.full_url}" title="{$items.name}">
+						<div class="inner">
+							<div class="inner-text">
+								<h4><span class="line-big">{$items.name}</span></h4>
+								{option:items.sub}
+								<p>{$items.sub}</p>
+								{/option:items.sub}
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="mobile-title">
+					<h5>
+						<a href="{$items.full_url}" title="{$items.name}">
+							{$items.name}
+						</a>
+					</h5>
+				</div>
+
+			</div>
+			{/iteration:items}
+		</div>
+	{/option:items}
+</div>
+
+
+{option:widgetDownloadsCategories}
+	<div class="downloads-categories link-hover">
+		<div class="grid">
+			{iteration:widgetDownloadsCategories}
+			<div class="grid-item grid-item portable-one-half desk-one-quarter">
+				<h4><span class="line">{$widgetDownloadsCategories.name}</span></h4>
+				<div class="js-equal-heights">
+					{$widgetDownloadsCategories.description}
+				</div>
+				<p>
+					<a href="{$widgetDownloadsCategories.full_url}" title="{$widgetDownloadsCategories.name}">{$lblDiscoverMore|ucfirst}</a>
+				</p>
+			</div>
+			{/iteration:widgetDownloadsCategories}
+
+			<div class="grid-item grid-item portable-one-half desk-one-quarter title-red">
+				<h4><span class="line">{$lblLetsTalkTitle|ucfirst}</span></h4>
+				<div class="js-equal-heights">
+					{$msgLetsTalk}
+				</div>
+				<p>
+					<a href="/{$FRONTEND_LANGUAGE}/contact" title="{$lblContact|ucfirst}">{$lblContact|ucfirst} ></a>
+				</p>
+			</div>
+
+		</div>
+	</div>
+{/option:widgetDownloadsCategories}
+
+{include:Core/Layout/Templates/Pagination.tpl}

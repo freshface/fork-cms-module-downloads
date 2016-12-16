@@ -1,0 +1,16 @@
+<p>
+    Voornaam:  {{ data.first_name }} <br>
+    Achternaam:  {{ data.last_name }} <br>
+    E-mail:  {{ data.email }} <br>
+    C.V.:  {% if data %} <a href="{{ SITE_URL}}{{ FRONTEND_FILES_URL }}/Downloads/file/{{ data.file }}"> {{ data.file }}</a> {% endif %}<br>
+    Motivatie: <br>
+    {{ data.motivation|raw }}
+</p>
+
+{% if backendUrl %}
+    <p>
+        <a href="{{ backendUrl }}" class="btn-primary">
+            View
+        </a>
+    </p>
+{% endif %}

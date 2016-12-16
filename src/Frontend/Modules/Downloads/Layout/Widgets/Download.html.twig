@@ -1,0 +1,32 @@
+{% if widgetDownloadsDownload %}
+
+    <h3>
+        {% if widgetDownloadsDownload.require_details == 'N' %}
+            <a href="{{ geturlforblock('Downloads','Download') }}/{{ widgetDownloadsDownload.url }}" title="{{ widgetDownloadsDownload.name }}">{{ widgetDownloadsDownload.name }}</a>
+        {% else %}
+            <a href="{{ widgetDownloadsDownload.full_url }}" title="{{ widgetDownloadsDownload.name }}">{{ widgetDownloadsDownload.name }}</a>
+        {% endif %}
+    </h3>
+
+    {% if  widgetDownloadsDownload.description %}
+    <p>
+        {{ widgetDownloadsDownload.description|truncate(200) }}
+    </p>
+    {% endif %}
+
+
+    {% if  widgetDownloadsDownload.image %}
+    <p>
+        <img src="{{ FRONTEND_FILES_URL }}/Downloads/image/400x/{{ widgetDownloadsDownload.image }}" alt="{{ widgetDownloadsDownload.name }}" />
+    </p>
+    {% endif %}
+
+    <p>
+        {% if widgetDownloadsDownload.require_details == 'N' %}
+            <a href="{{ geturlforblock('Downloads','Download') }}/{{ widgetDownloadsDownload.url }}" title="{{ widgetDownloadsDownload.name }}">{{ 'lbl.Download'|trans|ucfirst }}</a>
+        {% else %}
+            <a href="{{ widgetDownloadsDownload.full_url }}" title="{{ widgetDownloadsDownload.name }}">{{ 'lbl.ReadMore'|trans|ucfirst }}</a>
+        {% endif %}
+    </p>
+
+{% endif %}

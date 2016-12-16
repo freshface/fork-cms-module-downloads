@@ -1,0 +1,37 @@
+
+{% if items %}
+    {% for item in items %}
+
+        <h3>
+            {% if item.require_details == 'N' %}
+                <a href="{{ geturlforblock('Downloads','Download') }}/{{ item.url }}" title="{{ item.name }}">{{ item.name }}</a>
+            {% else %}
+                <a href="{{ item.full_url }}" title="{{ item.name }}">{{ item.name }}</a>
+            {% endif %}
+        </h3>
+
+
+        {% if  item.description %}
+        <p>
+            {{ item.description|truncate(200) }}
+        </p>
+        {% endif %}
+
+        {% if  item.image %}
+        <p>
+            <img src="{{ FRONTEND_FILES_URL }}/Downloads/image/400x/{{ item.image }}" alt="{{ item.name }}" />
+        </p>
+        {% endif %}
+
+        <p>
+            {% if item.require_details == 'N' %}
+                <a href="{{ geturlforblock('Downloads','Download') }}/{{ item.url }}" title="{{ item.name }}">{{ 'lbl.Download'|trans|ucfirst }}</a>
+            {% else %}
+                <a href="{{ item.full_url }}" title="{{ item.name }}">{{ 'lbl.Download'|trans|ucfirst }}</a>
+            {% endif %}
+        </p>
+
+    {% endfor %}
+{% endif %}
+
+{% include "#{THEME_PATH}/Core/Layout/Templates/Partials/Pagination.html.twig" %}

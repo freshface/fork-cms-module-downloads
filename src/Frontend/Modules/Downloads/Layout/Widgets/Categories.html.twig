@@ -1,0 +1,17 @@
+{% if widgetDownloadsCategories %}
+	<div class="downloads-categories link-hover">
+		<div class="grid">
+			{% for item in widgetDownloadsCategories %}
+			<div class="grid-item portable-one-half desk-one-quarter">
+				<h4><span class="line"><a href="{{ item.full_url }}" title="{{ item.name }}">{{ item.name }}</a></span></h4>
+				<div class="js-equal-heights">
+					{{ item.description }}
+				</div>
+				<p>
+					<a href="{{ item.full_url }}" title="{{ item.name }}">{{ 'lbl.ReadMore'|trans|ucfirst }}</a>
+				</p>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endif %}
