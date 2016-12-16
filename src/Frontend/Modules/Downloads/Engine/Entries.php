@@ -14,7 +14,6 @@ use Frontend\Modules\Downloads\Engine\Images as FrontendDownloadsImagesModel;
  */
 class Entries
 {
-
     public static function insert($item)
     {
         // get db
@@ -25,6 +24,4 @@ class Entries
         // insert
         return FrontendModel::get('database')->insert('downloads_entries', $item);
     }
-
-
 }

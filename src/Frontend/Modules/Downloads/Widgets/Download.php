@@ -2,10 +2,8 @@
 
 namespace Frontend\Modules\Downloads\Widgets;
 
-
 use Frontend\Core\Engine\Base\Widget as FrontendBaseWidget;
 use Frontend\Modules\Downloads\Engine\Model as FrontendDownloadsModel;
-
 
 class Download extends FrontendBaseWidget
 {
@@ -24,6 +22,8 @@ class Download extends FrontendBaseWidget
      */
     private function parse()
     {
-        if(isset($this->data['id'])) $this->tpl->assign('widgetDownloadsDownload', FrontendDownloadsModel::getById($this->data['id']));
+        if (isset($this->data['id'])) {
+            $this->tpl->assign('widgetDownloadsDownload', FrontendDownloadsModel::getById($this->data['id']));
+        }
     }
 }

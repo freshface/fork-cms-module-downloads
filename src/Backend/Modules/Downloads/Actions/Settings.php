@@ -64,18 +64,18 @@ class Settings extends BackendBaseActionEdit
            $this->get('fork.settings')->get($this->getModule(), 'allow_subcategories', false)
        );
 
-       $this->frm->addCheckbox(
+        $this->frm->addCheckbox(
           'use_image_as_og_image',
           $this->get('fork.settings')->get($this->getModule(), 'use_image_as_og_image', true)
       );
 
-      $this->frm->addCheckbox(
+        $this->frm->addCheckbox(
          'make_widget_per_category',
          $this->get('fork.settings')->get($this->getModule(), 'make_widget_per_category', true)
      );
 
 
-    $this->frm->addCheckbox(
+        $this->frm->addCheckbox(
         'allow_tags',
         $this->get('fork.settings')->get($this->getModule(), 'allow_tags', false)
     );
@@ -98,7 +98,6 @@ class Settings extends BackendBaseActionEdit
     private function validateForm()
     {
         if ($this->frm->isSubmitted()) {
-
             if ($this->frm->isCorrect()) {
                 // set our settings
                 $this->get('fork.settings')->set($this->URL->getModule(), 'overview_number_of_items', (int) $this->frm->getField('overview_number_of_items')->getValue());

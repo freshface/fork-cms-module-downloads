@@ -15,6 +15,7 @@ use Frontend\Core\Engine\Model as FrontendModel;
 use Frontend\Modules\Downloads\Engine\Model as FrontendDownloadsModel;
 use Frontend\Modules\Downloads\Engine\Categories as FrontendDownloadsCategoriesModel;
 use Frontend\Core\Engine\Form as FrontendForm;
+
 /**
  * This is the overview-action
  *
@@ -64,18 +65,22 @@ class Category extends FrontendBaseBlock
         // create the form
         $this->frm = new FrontendForm('downloadsIndexForm', null, 'get', null, false);
         $categories = FrontendDownloadsCategoriesModel::getForMultiCheckboxForParent($this->record['id']);
-        if(!empty($categories)) $this->frm->addMultiCheckbox('categories', $categories);
+        if (!empty($categories)) {
+            $this->frm->addMultiCheckbox('categories', $categories);
+        }
         $this->frm->addCheckbox('resetFilter');
     }
 
-     private function validateForm()
+    private function validateForm()
     {
         // is the form submitted
         if ($this->frm->isSubmitted()) {
 
             // no errors
             if ($this->frm->isCorrect()) {
-                if($this->frm->getField('resetFilter')->isChecked()) $this->redirect($this->record['full_url'] );
+                if ($this->frm->getField('resetFilter')->isChecked()) {
+                    $this->redirect($this->record['full_url']);
+                }
             }
         }
     }
@@ -86,8 +91,6 @@ class Category extends FrontendBaseBlock
         $this->filter['categories'] = $this->URL->getParameter('categories', 'array');
         $this->filter['resetFilter'] = $this->URL->getParameter('resetFilter');
         $this->filter['form'] = $this->URL->getParameter('form', 'string');
-
-
     }
 
     /**
@@ -102,16 +105,16 @@ class Category extends FrontendBaseBlock
             $this->redirect(Navigation::getURL(404));
         }
 
-         $this->record = FrontendDownloadsCategoriesModel::get($parameter);
+        $this->record = FrontendDownloadsCategoriesModel::get($parameter);
 
-         if (empty($this->record)) {
+        if (empty($this->record)) {
             $this->redirect(Navigation::getURL(404));
         }
 
-        if($this->filter['form'] == NULL) {
-            $children = FrontendDownloadsCategoriesModel::getAllChildrenByPath( $this->record['path']);
+        if ($this->filter['form'] == null) {
+            $children = FrontendDownloadsCategoriesModel::getAllChildrenByPath($this->record['path']);
             $childrenIds = array_keys($children);
-            array_push($childrenIds , (int) $this->record['id']); // add parent category
+            array_push($childrenIds, (int) $this->record['id']); // add parent category
             $this->filter['categories'] = $childrenIds;
         }
 
@@ -151,7 +154,7 @@ class Category extends FrontendBaseBlock
      */
     private function parse()
     {
-         // build Facebook  OpenGraph data
+        // build Facebook  OpenGraph data
         $this->header->addOpenGraphData('title', $this->record['name'], true);
         $this->header->addOpenGraphData(
             'url',
@@ -177,14 +180,14 @@ class Category extends FrontendBaseBlock
         $this->tpl->assign('items', $this->items);
 
 
-        $this->tpl->assign('searched', !($this->filter['form']== NULL));
+        $this->tpl->assign('searched', !($this->filter['form']== null));
 
         // assign item
         $this->tpl->assign('item', $this->record);
 
         $allCategories = FrontendDownloadsCategoriesModel::getAll(array('parent_id' => 0));
         unset($allCategories[$this->record['id']]);
-        $this->tpl->assign('widgetDownloadsCategories',$allCategories  );
+        $this->tpl->assign('widgetDownloadsCategories', $allCategories);
 
         // parse the pagination
         $this->parsePagination();

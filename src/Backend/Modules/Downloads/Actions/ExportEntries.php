@@ -38,6 +38,5 @@ class ExportEntries extends BackendBaseAction
 
 
         BackendCSV::outputCSV(date('Ymd_His') . '.csv', $data);
-
     }
 }

@@ -18,26 +18,25 @@ class Entries
          FROM downloads_entries AS i
          WHERE i.download_id = ? ORDER BY created_on DESC';
 
-     public static function getAll($id)
-     {
-         $db = BackendModel::get('database');
+    public static function getAll($id)
+    {
+        $db = BackendModel::get('database');
 
-         $fileUrl = SITE_URL . FRONTEND_FILES_URL . '/Downloads/File/';
+        $fileUrl = SITE_URL . FRONTEND_FILES_URL . '/Downloads/File/';
 
-         $return =  (array) $db->getRecords(
+        $return =  (array) $db->getRecords(
              'SELECT i.first_name,  i.last_name, i.email, i.file
               FROM downloads_entries AS i
               WHERE i.download_id = ?',
              array((int) $id)
          );
 
-         foreach($return as &$record){
-             if(!empty($record['file'])){
-                 $record['file'] = $fileUrl . $record['file'];
-             }
-         }
+        foreach ($return as &$record) {
+            if (!empty($record['file'])) {
+                $record['file'] = $fileUrl . $record['file'];
+            }
+        }
 
-         return  $return;
-
-     }
+        return  $return;
+    }
 }

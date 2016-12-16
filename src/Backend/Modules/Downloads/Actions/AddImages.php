@@ -27,8 +27,7 @@ class AddImages extends BackendBaseActionAdd
         $this->id = $this->getParameter('id', 'int');
 
         // does the item exists
-        if($this->id !== null && BackendDownloadsModel::exists($this->id))
-        {
+        if ($this->id !== null && BackendDownloadsModel::exists($this->id)) {
             // call parent, this will probably add some general CSS/JS or other required files
             parent::execute();
 
@@ -47,7 +46,9 @@ class AddImages extends BackendBaseActionAdd
             $this->display();
         }
         // no item found, throw an exception, because somebody is fucking with our URL
-        else $this->redirect(BackendModel::createURLForAction('index') . '&error=non-existing');
+        else {
+            $this->redirect(BackendModel::createURLForAction('index') . '&error=non-existing');
+        }
     }
 
     /**
@@ -59,19 +60,21 @@ class AddImages extends BackendBaseActionAdd
         $this->record = (array) BackendDownloadsModel::get($this->id);
 
         // no item found, throw an exceptions, because somebody is fucking with our URL
-        if(empty($this->record)) $this->redirect(BackendModel::createURLForAction('Index') . '&error=non-existing');
+        if (empty($this->record)) {
+            $this->redirect(BackendModel::createURLForAction('Index') . '&error=non-existing');
+        }
 
         $this->tpl->assign('record', $this->record);
         
         $timestamp = time();
 
-        $this->header->addJSData('uploadifive','upload_timestamp', $timestamp);
-        $this->header->addJSData('uploadifive','upload_token', md5($timestamp));
-        $this->header->addJSData('uploadifive','id', $this->id);
-        $this->header->addJSData('uploadifive','upload_uploaded_success_url', BackendModel::createURLForAction('Edit') . '&id=' . $this->id . '#tabImages');
-        $this->header->addJSData('uploadifive','upload_uploaded_fallback_url', ''); // not supported page
+        $this->header->addJSData('uploadifive', 'upload_timestamp', $timestamp);
+        $this->header->addJSData('uploadifive', 'upload_token', md5($timestamp));
+        $this->header->addJSData('uploadifive', 'id', $this->id);
+        $this->header->addJSData('uploadifive', 'upload_uploaded_success_url', BackendModel::createURLForAction('Edit') . '&id=' . $this->id . '#tabImages');
+        $this->header->addJSData('uploadifive', 'upload_uploaded_fallback_url', ''); // not supported page
 
-        $this->header->addJSData('uploadifive','add_files_url', BackendModel::createURLForAction('AddFiles'));
+        $this->header->addJSData('uploadifive', 'add_files_url', BackendModel::createURLForAction('AddFiles'));
     }
 
     /**
@@ -81,7 +84,6 @@ class AddImages extends BackendBaseActionAdd
     {
         // create form
         $this->frm = new BackendForm('add');
-        
     }
 
     /**

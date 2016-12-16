@@ -4,7 +4,6 @@ namespace Frontend\Modules\Downloads\Engine;
 
 use Frontend\Core\Engine\Model as FrontendModel;
 
-
 /**
  * In this file we store all generic functions that we will be using in the Downloads module
  *
@@ -14,9 +13,9 @@ class Images
 {
     public static function getAll($id)
     {
-       $db = FrontendModel::get('database');
+        $db = FrontendModel::get('database');
 
-       $return =  (array) $db->getRecords(
+        $return =  (array) $db->getRecords(
            'SELECT i.*, c.name
             FROM download_images AS i
             INNER JOIN download_images_content AS c on c.image_id = i.id
@@ -24,6 +23,6 @@ class Images
            array((int) $id)
        );
 
-       return  $return;
+        return  $return;
     }
 }

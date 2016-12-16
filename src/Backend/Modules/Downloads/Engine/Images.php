@@ -12,8 +12,7 @@ use Backend\Core\Engine\Language;
  */
 class Images
 {
-
-      const QRY_DATAGRID_BROWSE_IMAGES_FOR_PROJECT  =
+    const QRY_DATAGRID_BROWSE_IMAGES_FOR_PROJECT  =
         'SELECT i.id, i.filename, i.sequence
         FROM download_images AS i
         WHERE i.download_id = ?
@@ -63,7 +62,7 @@ class Images
                 ) {
                     $URL = BackendModel::addNumber($URL);
 
-                    return self::getURL($URL,$language, $id);
+                    return self::getURL($URL, $language, $id);
                 }
             }
 
@@ -77,8 +76,8 @@ class Images
         */
         public static function delete($id)
         {
-           BackendModel::get('database')->delete('download_images', 'id = ?', (int) $id);
-           BackendModel::get('database')->delete('download_images_content', 'image_id = ?', (int) $id);
+            BackendModel::get('database')->delete('download_images', 'id = ?', (int) $id);
+            BackendModel::get('database')->delete('download_images_content', 'image_id = ?', (int) $id);
         }
 
         /**
@@ -89,7 +88,7 @@ class Images
         */
         public static function exists($id)
         {
-           return (bool) BackendModel::get('database')->getVar(
+            return (bool) BackendModel::get('database')->getVar(
                'SELECT 1
                 FROM download_images AS i
                 WHERE i.id = ?
@@ -106,9 +105,9 @@ class Images
         */
         public static function get($id)
         {
-           $db = BackendModel::get('database');
+            $db = BackendModel::get('database');
 
-           $return =  (array) $db->getRecord(
+            $return =  (array) $db->getRecord(
                'SELECT i.*
                 FROM download_images AS i
                 WHERE i.id = ?',
@@ -121,24 +120,22 @@ class Images
                WHERE i.image_id = ?',
                array((int) $id), 'language');
 
-           return  $return;
-
+            return  $return;
         }
 
-        public static function getAll($id)
-        {
-           $db = BackendModel::get('database');
+    public static function getAll($id)
+    {
+        $db = BackendModel::get('database');
 
-           $return =  (array) $db->getRecords(
+        $return =  (array) $db->getRecords(
                'SELECT i.*
                 FROM download_images AS i
                 WHERE i.download_id = ? ORDER BY i.sequence',
                array((int) $id)
            );
 
-           return  $return;
-
-        }
+        return  $return;
+    }
         /**
         * Insert an item in the database
         *
@@ -147,16 +144,16 @@ class Images
         */
         public static function insert(array $item)
         {
-           $item['created_on'] = BackendModel::getUTCDate();
-           $item['edited_on'] = BackendModel::getUTCDate();
+            $item['created_on'] = BackendModel::getUTCDate();
+            $item['edited_on'] = BackendModel::getUTCDate();
 
-           return (int) BackendModel::get('database')->insert('download_images', $item);
+            return (int) BackendModel::get('database')->insert('download_images', $item);
         }
 
-        public static function insertContent(array $content)
-        {
-           BackendModel::get('database')->insert('download_images_content', $content);
-        }
+    public static function insertContent(array $content)
+    {
+        BackendModel::get('database')->insert('download_images_content', $content);
+    }
 
         /**
         * Updates an item
@@ -165,21 +162,20 @@ class Images
         */
         public static function update(array $item)
         {
-           $item['edited_on'] = BackendModel::getUTCDate();
+            $item['edited_on'] = BackendModel::getUTCDate();
 
-           BackendModel::get('database')->update(
+            BackendModel::get('database')->update(
                'download_images', $item, 'id = ?', (int) $item['id']
            );
         }
 
-        public static function updateContent(array $content, $id)
-        {
-           $db = BackendModel::get('database');
-           foreach($content as $language => $row)
-           {
-               $db->update('download_images_content', $row, 'image_id = ? AND language = ?', array($id, $language));
-           }
+    public static function updateContent(array $content, $id)
+    {
+        $db = BackendModel::get('database');
+        foreach ($content as $language => $row) {
+            $db->update('download_images_content', $row, 'image_id = ? AND language = ?', array($id, $language));
         }
+    }
 
         /**
         * Get the maximum Team sequence.

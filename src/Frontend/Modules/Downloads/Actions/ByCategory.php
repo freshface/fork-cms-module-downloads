@@ -14,6 +14,7 @@ use Frontend\Core\Engine\Navigation as Navigation;
 use Frontend\Core\Engine\Model as FrontendModel;
 use Frontend\Modules\Downloads\Engine\Model as FrontendDownloadsModel;
 use Frontend\Modules\Downloads\Engine\Categories as FrontendDownloadsCategoriesModel;
+
 /**
  * This is the overview-action
  *
@@ -49,8 +50,8 @@ class ByCategory extends FrontendBaseBlock
         // get articles
         $this->categories = FrontendDownloadsCategoriesModel::getAll();
 
-        foreach($this->categories as &$category){
-            $category['items'] = FrontendDownloadsModel::getAll(100,0, array('categories' => array($category['id'])));
+        foreach ($this->categories as &$category) {
+            $category['items'] = FrontendDownloadsModel::getAll(100, 0, array('categories' => array($category['id'])));
         }
     }
 
@@ -61,6 +62,5 @@ class ByCategory extends FrontendBaseBlock
     {
         // assign articles
         $this->tpl->assign('categories', $this->categories);
-
     }
 }

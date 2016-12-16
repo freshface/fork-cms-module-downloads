@@ -59,22 +59,16 @@ class Download extends ActionEdit
         $file = FRONTEND_FILES_PATH . '/Downloads/file/' . $this->record['content'][$this->language]['file'];
         $fs = new Filesystem();
 
-        if($fs->exists($file)){
-
+        if ($fs->exists($file)) {
             header('Content-Type: application/octet-stream');
             header("Content-Transfer-Encoding: Binary");
             header("Content-disposition: attachment; filename=\"" . $this->record['content'][$this->language]['file'] . "\"");
             readfile($file);
             exit;
-
         } else {
             $this->redirect(
                 Model::createURLForAction('Edit') . '&report=error&id=' . $this->id
             );
         }
-
-
-
     }
-
 }

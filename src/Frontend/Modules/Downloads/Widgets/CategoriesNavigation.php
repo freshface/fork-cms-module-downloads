@@ -2,7 +2,6 @@
 
 namespace Frontend\Modules\Downloads\Widgets;
 
-
 use Frontend\Core\Engine\Base\Widget as FrontendBaseWidget;
 use Frontend\Modules\Downloads\Engine\Model as FrontendDownloadsModel;
 use Frontend\Modules\Downloads\Engine\Categories as FrontendDownloadsCategoriesModel;

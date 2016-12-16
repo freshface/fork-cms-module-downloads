@@ -26,7 +26,7 @@ class DeleteCategory extends ActionDelete
             $this->record = (array) BackendDownloadsCategoryModel::get($this->id);
 
             // delete extra_ids
-            foreach($this->record['content'] as $row){
+            foreach ($this->record['content'] as $row) {
                 Model::deleteExtraById($row['extra_id'], true);
             }
 
@@ -40,7 +40,8 @@ class DeleteCategory extends ActionDelete
             $this->redirect(
                 Model::createURLForAction('Categories') . '&report=deleted'
             );
+        } else {
+            $this->redirect(Model::createURLForAction('Categories') . '&error=non-existing');
         }
-        else $this->redirect(Model::createURLForAction('Categories') . '&error=non-existing');
     }
 }

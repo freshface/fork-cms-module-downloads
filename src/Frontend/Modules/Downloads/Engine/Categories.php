@@ -6,7 +6,6 @@ use Frontend\Core\Engine\Model as FrontendModel;
 use Frontend\Core\Engine\Language;
 use Frontend\Core\Engine\Navigation;
 
-
 /**
  * In this file we store all generic functions that we will be using in the Downloads module
  *
@@ -23,34 +22,31 @@ class Categories
     */
    public static function getAllCount($filter = array())
    {
-
-     $query =
+       $query =
             'SELECT COUNT(i.id) AS count
              FROM downloads AS i';
 
       // init parameters
       $parameters = array();
 
-      if($filter['categories'] !== null)
-      {
-          $query .= ' INNER JOIN downloads_linked_catgories AS c ON i.id = c.download_id';
-      }
+       if ($filter['categories'] !== null) {
+           $query .= ' INNER JOIN downloads_linked_catgories AS c ON i.id = c.download_id';
+       }
 
-      $query .= ' WHERE 1';
+       $query .= ' WHERE 1';
 
-      $query .= ' AND i.hidden = ?';
-      $parameters[] = 'N';
+       $query .= ' AND i.hidden = ?';
+       $parameters[] = 'N';
 
-      $query .= ' AND i.status = ?';
-      $parameters[] = 'active';
+       $query .= ' AND i.status = ?';
+       $parameters[] = 'active';
 
        $query .= ' AND i.publish_on <= ?';
-      $parameters[] = FrontendModel::getUTCDate('Y-m-d H:i') . ':00';
+       $parameters[] = FrontendModel::getUTCDate('Y-m-d H:i') . ':00';
 
-      if($filter['categories'] !== null)
-      {
-          $query .= ' AND c.category_id IN(' . implode(',', array_values($filter['categories'])) . ')';
-      }
+       if ($filter['categories'] !== null) {
+           $query .= ' AND c.category_id IN(' . implode(',', array_values($filter['categories'])) . ')';
+       }
 
       //$query .= ' GROUP BY i.id';
 
@@ -58,9 +54,9 @@ class Categories
    }
 
     public static function get($URL)
-   {
+    {
         $URL = (string) $URL;
-       $item = (array) FrontendModel::getContainer()->get('database')->getRecord(
+        $item = (array) FrontendModel::getContainer()->get('database')->getRecord(
            'SELECT i.id, c.name, c.url, c.intro, i.path
             FROM downloads_categories AS i
             JOIN downloads_category_content AS c on c.category_id = i.id
@@ -78,17 +74,17 @@ class Categories
 
        // init var
        $link = Navigation::getURLForBlock('Downloads', 'Category');
-       $item['full_url'] = $link . '/' . $item['url'];
+        $item['full_url'] = $link . '/' . $item['url'];
        //$item['images'] = FrontendDownloadsImagesModel::getAll($item['id']);
 
        // return
        return $item;
-   }
+    }
 
     public static function getAllChildrenByPath($path)
-   {
-      $path = (string) $path;
-       $items = (array) FrontendModel::getContainer()->get('database')->getRecords(
+    {
+        $path = (string) $path;
+        $items = (array) FrontendModel::getContainer()->get('database')->getRecords(
            'SELECT i.id, c.name, c.url, c.description, i.path
             FROM downloads_categories AS i
             JOIN downloads_category_content AS c on c.category_id = i.id
@@ -114,18 +110,17 @@ class Categories
        $link = Navigation::getURLForBlock('Downloads', 'Category');
 
         foreach ($items as &$item) {
-
-           $item['full_url'] = $link . '/' . $item['url'];
+            $item['full_url'] = $link . '/' . $item['url'];
         }
 
        // return
        return $items;
-   }
+    }
 
     public static function getAllChildrenForDownload($download_id)
-   {
-      $download_id = (int) $download_id;
-       $items = (array) FrontendModel::getContainer()->get('database')->getRecords(
+    {
+        $download_id = (int) $download_id;
+        $items = (array) FrontendModel::getContainer()->get('database')->getRecords(
            'SELECT i.id, c.name, c.url, c.description, i.path
             FROM downloads_categories AS i
             JOIN downloads_category_content AS c on c.category_id = i.id
@@ -147,26 +142,24 @@ class Categories
            return array();
        }
 
-       $parents = self::getAll(array('parent_id' => 0));
+        $parents = self::getAll(array('parent_id' => 0));
 
 
        // init var
        $link = Navigation::getURLForBlock('Downloads', 'Category');
 
         foreach ($items as &$item) {
-
-           $item['full_url'] = $link . '/' . $item['url'];
-           $pathArray = explode('/',rtrim(ltrim($item['path'],'/') , '/'));
-           $item['full_filter_url'] = $parents[$pathArray[0]]['full_url'] . '?form=downloadsIndexForm&categories[]=' . $item['id'];
-
+            $item['full_url'] = $link . '/' . $item['url'];
+            $pathArray = explode('/', rtrim(ltrim($item['path'], '/'), '/'));
+            $item['full_filter_url'] = $parents[$pathArray[0]]['full_url'] . '?form=downloadsIndexForm&categories[]=' . $item['id'];
         }
 
        // return
        return $items;
-   }
+    }
 
 
-   public static function getForMultiCheckbox()
+    public static function getForMultiCheckbox()
     {
         $db = FrontendModel::get('database');
 
@@ -201,9 +194,7 @@ class Categories
      */
     public static function getAll($filter = array())
     {
-
-
-       $query = 'SELECT i.id,  co.name, co.url, co.description
+        $query = 'SELECT i.id,  co.name, co.url, co.description
              FROM downloads_categories AS i
              JOIN downloads_category_content AS co on co.category_id = i.id';
 
@@ -223,10 +214,9 @@ class Categories
 
 
 
-        if(isset($filter['parent_id']) && $filter['parent_id'] !== null)
-        {
+        if (isset($filter['parent_id']) && $filter['parent_id'] !== null) {
             $query .= ' AND i.parent_id = ?';
-             $parameters[] = $filter['parent_id'];
+            $parameters[] = $filter['parent_id'];
         }
 
 
@@ -245,7 +235,6 @@ class Categories
 
         // prepare items for search
         foreach ($items as &$item) {
-
             $item['full_url'] =  $detailUrl . '/' . $item['url'];
         }
 
@@ -253,5 +242,4 @@ class Categories
         // return
         return $items;
     }
-
 }

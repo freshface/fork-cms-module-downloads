@@ -14,6 +14,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 use Symfony\Component\HttpFoundation\Session\Session;
+
 /**
  * This is the index-action (default), it will display the overview of Downloads posts
  *
@@ -66,8 +67,7 @@ class Download extends Block
         $hasSession = $session->get('download-' . $this->record['id']);
 
 
-        if($fs->exists($file) && !empty($this->record['file']) && ($this->record['require_details'] == 'N' || $hasSession)){
-
+        if ($fs->exists($file) && !empty($this->record['file']) && ($this->record['require_details'] == 'N' || $hasSession)) {
             $content[FRONTEND_LANGUAGE] = array('num_downloads' => (int) $this->record['num_downloads'] + 1);
             FrontendDownloadsModel::updateContent($content, $this->record['id']);
             header('Content-Type: application/octet-stream');
@@ -75,11 +75,9 @@ class Download extends Block
             header("Content-disposition: attachment; filename=\"" . $this->record['file'] . "\"");
             readfile($file);
             exit;
-
         } else {
             $this->redirect(Navigation::getURL(404));
         }
-
     }
 
     /**
@@ -87,7 +85,6 @@ class Download extends Block
      */
     protected function parse()
     {
-
     }
 
     /**
@@ -98,5 +95,4 @@ class Download extends Block
         $numberOfParameters = count($this->URL->getParameters());
         return $this->URL->getParameter($numberOfParameters - 1);
     }
-
 }

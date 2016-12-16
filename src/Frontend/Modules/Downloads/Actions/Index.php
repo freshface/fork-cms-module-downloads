@@ -15,6 +15,7 @@ use Frontend\Core\Engine\Model as FrontendModel;
 use Frontend\Modules\Downloads\Engine\Model as FrontendDownloadsModel;
 use Frontend\Modules\Downloads\Engine\Categories as FrontendDownloadsCategoriesModel;
 use Frontend\Core\Engine\Form as FrontendForm;
+
 /**
  * This is the overview-action
  *
@@ -63,18 +64,22 @@ class Index extends FrontendBaseBlock
         // create the form
         $this->frm = new FrontendForm('downloadsIndexForm', null, 'get', null, false);
         $categories = FrontendDownloadsCategoriesModel::getForMultiCheckbox();
-        if(!empty($categories)) $this->frm->addMultiCheckbox('categories', $categories);
+        if (!empty($categories)) {
+            $this->frm->addMultiCheckbox('categories', $categories);
+        }
         $this->frm->addCheckbox('resetFilter');
     }
 
-     private function validateForm()
+    private function validateForm()
     {
         // is the form submitted
         if ($this->frm->isSubmitted()) {
 
             // no errors
             if ($this->frm->isCorrect()) {
-                if($this->frm->getField('resetFilter')->isChecked()) $this->redirect(Navigation::getURLForBlock('Downloads') );
+                if ($this->frm->getField('resetFilter')->isChecked()) {
+                    $this->redirect(Navigation::getURLForBlock('Downloads'));
+                }
             }
         }
     }
@@ -131,7 +136,7 @@ class Index extends FrontendBaseBlock
         // assign articles
         $this->tpl->assign('items', $this->items);
 
-        $this->tpl->assign('searched', !($this->filter['form'] == NULL));
+        $this->tpl->assign('searched', !($this->filter['form'] == null));
 
         // parse the pagination
         $this->parsePagination();

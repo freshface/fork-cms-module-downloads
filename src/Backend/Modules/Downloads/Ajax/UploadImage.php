@@ -34,10 +34,8 @@ class UploadImage extends AjaxAction
 
         $this->languages = SiteHelpersHelper::getActiveLanguages();
 
-        if(!empty($_FILES))
-        {
-            if ($token == $verify_token)
-            {
+        if (!empty($_FILES)) {
+            if ($token == $verify_token) {
                 ini_set('memory_limit', -1);
 
                 // Upload
@@ -46,14 +44,10 @@ class UploadImage extends AjaxAction
                 ini_restore('memory_limit');
 
                 $this->output(self::OK, null, '1');
-            }
-            else
-            {
+            } else {
                 $this->output(self::ERROR, null, 'invalid token');
             }
-        }
-        else
-        {
+        } else {
             $this->output(self::ERROR, null, 'no files selected');
         }
     }
@@ -69,8 +63,7 @@ class UploadImage extends AjaxAction
     {
         $file_data = $file['Filedata'];
 
-        if($file_data)
-        {
+        if ($file_data) {
             $file_parts = pathinfo($file_data['name']);
             $temp_file   = $file_data['tmp_name'];
 
@@ -79,8 +72,7 @@ class UploadImage extends AjaxAction
 
             $allowed_types = null; // Allowed file types
 
-            if (filesize($temp_file) > 0)
-            {
+            if (filesize($temp_file) > 0) {
                 // Generate a unique filename
                 $filename = (CommonUri::getUrl($file_parts['filename']) . uniqid() . '.' . strtolower($extension));
 
@@ -113,8 +105,7 @@ class UploadImage extends AjaxAction
 
                 $content = array();
 
-                foreach($this->languages as $language)
-                {
+                foreach ($this->languages as $language) {
                     $specific['image_id'] = $insert['id'];
 
                     $specific['language'] = $language['abbreviation'];
@@ -130,16 +121,11 @@ class UploadImage extends AjaxAction
                 $imagePath = SiteHelpersHelper::generateFolders($this->getModule(), 'images', array('1200x630', '600x315'));
 
                 BackendModel::generateThumbnails($imagePath, $files_path . '/' . $filename);
-
-            }
-            else
-            {
+            } else {
                 echo 'Invalid file type.';
                 exit;
                 //$this->output(self::ERROR, null, 'Invalid file type.');
             }
         }
     }
-
-
 }

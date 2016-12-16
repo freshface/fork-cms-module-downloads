@@ -75,7 +75,7 @@ class Model
              ) {
                  $URL = BackendModel::addNumber($URL);
 
-                 return self::getURL($URL,$language, $id);
+                 return self::getURL($URL, $language, $id);
              }
          }
 
@@ -94,8 +94,8 @@ class Model
         BackendModel::get('database')->delete('downloads_linked_catgories', 'download_id = ?', (int) $id);
 
         $images = (array) BackendDownloadsImagesModel::getAll((int) $id);
-        foreach($images as $image){
-            BackendModel::deleteThumbnails(FRONTEND_FILES_PATH . '/' . BackendModel::get('url')->getModule() . '/uploaded_images',  $image['filename']);
+        foreach ($images as $image) {
+            BackendModel::deleteThumbnails(FRONTEND_FILES_PATH . '/' . BackendModel::get('url')->getModule() . '/uploaded_images', $image['filename']);
         }
 
         BackendModel::get('database')->execute('DELETE c FROM download_images_content c INNER JOIN download_images i ON c.image_id = i.id WHERE i.download_id = ?', array((int) $id));
@@ -143,7 +143,6 @@ class Model
             array((int) $id), 'language');
 
         return  $return;
-
     }
 
 
@@ -166,10 +165,8 @@ class Model
 
     public static function insertContent(array $content, $parentData)
     {
-        foreach($content as &$item){
-
-            if($parentData['download_widget'] == 'Y')
-            {
+        foreach ($content as &$item) {
+            if ($parentData['download_widget'] == 'Y') {
                 $data = [
                     'id' => $item['download_id'],
                     'language' => $item['language'],
@@ -207,12 +204,8 @@ class Model
     public static function updateContent(array $content, $id, $parentData)
     {
         $db = BackendModel::get('database');
-        foreach($content as $language => $row)
-        {
-
-
-            if($parentData['download_widget'] == 'Y' && $row['download_widget_extra_id'])
-            {
+        foreach ($content as $language => $row) {
+            if ($parentData['download_widget'] == 'Y' && $row['download_widget_extra_id']) {
                 // update
                 $data = [
                     'id' => $row['download_id'],
@@ -222,9 +215,7 @@ class Model
                 ];
 
                 BackendModel::updateExtra($row['download_widget_extra_id'], 'data', $data);
-
-            } else if($parentData['download_widget'] == 'Y' && !$row['download_widget_extra_id'])
-            {
+            } elseif ($parentData['download_widget'] == 'Y' && !$row['download_widget_extra_id']) {
                 // insert
                 $data = [
                     'id' => $row['download_id'],
@@ -240,12 +231,10 @@ class Model
                     'Download',
                     $data
                 );
-
-            } else if($parentData['download_widget'] == 'N' && $row['download_widget_extra_id'])
-            {
+            } elseif ($parentData['download_widget'] == 'N' && $row['download_widget_extra_id']) {
                 // remove
 
-                BackendModel::deleteExtraById($row['download_widget_extra_id'] , true);
+                BackendModel::deleteExtraById($row['download_widget_extra_id'], true);
                 $row['download_widget_extra_id'] = null;
             }
 

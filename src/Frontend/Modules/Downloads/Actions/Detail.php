@@ -88,8 +88,7 @@ class Detail extends Block
                 $session->set('download-' . $this->record['id'], true);
 
                 // redirect
-                $this->redirect( $this->record['full_url'] . '/' . Language::getAction('Success'));
-
+                $this->redirect($this->record['full_url'] . '/' . Language::getAction('Success'));
             }
         }
     }
@@ -124,7 +123,9 @@ class Detail extends Block
         }
 
         // Redirect not on draft and detailsor not required
-        if (!$this->URL->getParameter('draft', 'bool') && $this->record['require_details'] == 'N') $this->redirect(Navigation::getURLForBlock('Downloads', 'Download') . '/' . $this->record['url']);
+        if (!$this->URL->getParameter('draft', 'bool') && $this->record['require_details'] == 'N') {
+            $this->redirect(Navigation::getURLForBlock('Downloads', 'Download') . '/' . $this->record['url']);
+        }
 
         // get status
         $this->status = $this->URL->getParameter(2);
@@ -134,11 +135,10 @@ class Detail extends Block
             // redirect for download
 
             // assign the header so we can download the file
-			$this->header->addMetaData(array(
-				'http-equiv' => 'refresh',
-				'content' => '2;url=' . Navigation::getURLForBlock('Downloads','Download') . '/' . $this->record['url']
-			));
-
+            $this->header->addMetaData(array(
+                'http-equiv' => 'refresh',
+                'content' => '2;url=' . Navigation::getURLForBlock('Downloads', 'Download') . '/' . $this->record['url']
+            ));
         }
     }
 
@@ -147,8 +147,9 @@ class Detail extends Block
      */
     protected function parse()
     {
-        if($this->get('fork.settings')->get('Downloads', 'use_image_as_og_image') && $this->record['image'])
+        if ($this->get('fork.settings')->get('Downloads', 'use_image_as_og_image') && $this->record['image']) {
             $this->header->addOpenGraphImage(FRONTEND_FILES_URL . '/Downloads/image/1200x630/' . $this->record['image']);
+        }
 
         // build Facebook  OpenGraph data
         $this->header->addOpenGraphData('title', $this->record['name'], true);
@@ -184,7 +185,7 @@ class Detail extends Block
         $session = new Session();
         $hasSession = $session->get('download-' . $this->record['id']);
 
-        if (empty($this->status) && $this->record['require_details'] == 'Y' && !$hasSession ) {
+        if (empty($this->status) && $this->record['require_details'] == 'Y' && !$hasSession) {
             $this->frm->parse($this->tpl);
         }
 
@@ -202,5 +203,4 @@ class Detail extends Block
         $numberOfParameters = count($this->URL->getParameters());
         return $this->URL->getParameter($numberOfParameters - 1);
     }
-
 }

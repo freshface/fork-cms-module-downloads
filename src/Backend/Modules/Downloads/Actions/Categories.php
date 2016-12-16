@@ -10,7 +10,6 @@ use Backend\Core\Engine\Model;
 use Backend\Modules\Downloads\Engine\Model as BackendDownloadsModel;
 use Backend\Modules\Downloads\Engine\Category as BackendDownloadsCategoryModel;
 
-
 /**
  * This is the index-action (default), it will display the overview of Downloads posts
  *
@@ -50,7 +49,7 @@ class Categories extends ActionIndex
             'name', array('class' => 'title')
         );
 
-        if($this->get('fork.settings')->get($this->getModule(), 'allow_subcategories', false) == true) {
+        if ($this->get('fork.settings')->get($this->getModule(), 'allow_subcategories', false) == true) {
             $this->dataGrid->addColumn(
                   'children', null, Language::lbl('ShowSubcategories'),
                   Model::createURLForAction('Categories') . '&amp;parent_id=[id]',
